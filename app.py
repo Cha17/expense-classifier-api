@@ -2,6 +2,8 @@ import numpy as np
 import nltk
 import string
 import os
+import sys
+import traceback
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.tokenize import word_tokenize
@@ -9,6 +11,13 @@ from nltk.corpus import stopwords
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
+# Download NLTK data at startup
+try:
+    nltk.download('punkt', quiet=True)
+    nltk.download('stopwords', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
+except Exception as e:
+    print(f"Error downloading NLTK data: {e}")
 
 # Training data structure: (user_input, category, expense_type)
 training_data = [
@@ -435,122 +444,115 @@ training_data = [
     ("libangan", "Entertainment", "Hobbies"),
     ("hobby", "Entertainment", "Hobbies")
 ]
-
 class ExpenseClassifier:
     def __init__(self, training_data):
         """Initialize the classifier with training data"""
-        self.training_data = training_data
-        self.vectorizer = TfidfVectorizer(ngram_range=(1, 3))
+        try:
+            self.training_data = training_data
+            self.vectorizer = TfidfVectorizer(ngram_range=(1, 3))
 
-        # Prepare training texts and labels
-        self.texts = [entry[0] for entry in training_data]
-        self.categories = [entry[1] for entry in training_data]
-        self.expense_types = [entry[2] for entry in training_data]
+            # Prepare training texts and labels
+            self.texts = [entry[0] for entry in training_data]
+            self.categories = [entry[1] for entry in training_data]
+            self.expense_types = [entry[2] for entry in training_data]
 
-        # Fit vectorizer
-        self.tfidf_matrix = self.vectorizer.fit_transform(self.texts)
+            # Fit vectorizer
+            self.tfidf_matrix = self.vectorizer.fit_transform(self.texts)
+            print("Classifier initialized successfully")
+        except Exception as e:
+            print(f"Error initializing classifier: {e}")
+            raise
 
     def preprocess_text(self, text):
         """Preprocess input text"""
-        # Convert to lowercase
-        text = text.lower()
-
-        # Remove punctuation
-        text = text.translate(str.maketrans('', '', string.punctuation))
-
-        # Tokenize
-        tokens = word_tokenize(text)
-
-        # Remove stopwords
-        stop_words = set(stopwords.words('english'))
-        tokens = [token for token in tokens if token not in stop_words]
-
-        return ' '.join(tokens)
+        try:
+            # Convert to lowercase
+            text = text.lower()
+            # Remove punctuation
+            text = text.translate(str.maketrans('', '', string.punctuation))
+            # Tokenize
+            tokens = word_tokenize(text)
+            # Remove stopwords
+            stop_words = set(stopwords.words('english'))
+            tokens = [token for token in tokens if token not in stop_words]
+            return ' '.join(tokens)
+        except Exception as e:
+            print(f"Error in preprocess_text: {e}")
+            raise
 
     def classify_expense(self, user_input):
         """Classify user input into category and expense type"""
-        # Preprocess input
-        processed_input = self.preprocess_text(user_input)
-
-        # Vectorize input
-        input_vector = self.vectorizer.transform([processed_input])
-
-        # Calculate similarities
-        similarities = cosine_similarity(input_vector, self.tfidf_matrix).flatten()
-
-        # Get best match
-        best_match_idx = np.argmax(similarities)
-        confidence_score = similarities[best_match_idx]
-
-        # Get predicted category and expense type
-        predicted_category = self.categories[best_match_idx]
-        predicted_expense_type = self.expense_types[best_match_idx]
-
-        return {
-            'user_input': user_input,
-            'category': predicted_category,
-            'expense_type': predicted_expense_type,
-            'confidence_score': confidence_score,
-            'requires_new_expense_type': confidence_score < 0.3
-        }
-
-    def get_similar_entries(self, user_input, n=5):
-        """Get n most similar entries for reference"""
-        input_vector = self.vectorizer.transform([self.preprocess_text(user_input)])
-        similarities = cosine_similarity(input_vector, self.tfidf_matrix).flatten()
-
-        # Get top n matches
-        top_indices = similarities.argsort()[-n:][::-1]
-
-        return [
-            {
-                'text': self.texts[idx],
-                'category': self.categories[idx],
-                'expense_type': self.expense_types[idx],
-                'similarity': similarities[idx]
+        try:
+            # Preprocess input
+            processed_input = self.preprocess_text(user_input)
+            # Vectorize input
+            input_vector = self.vectorizer.transform([processed_input])
+            # Calculate similarities
+            similarities = cosine_similarity(input_vector, self.tfidf_matrix).flatten()
+            # Get best match
+            best_match_idx = np.argmax(similarities)
+            confidence_score = float(similarities[best_match_idx])
+            
+            return {
+                'user_input': user_input,
+                'category': self.categories[best_match_idx],
+                'expense_type': self.expense_types[best_match_idx],
+                'confidence_score': confidence_score,
+                'requires_new_expense_type': confidence_score < 0.3
             }
-            for idx in top_indices
-        ]
-
-# Initialize classifier
-classifier = ExpenseClassifier(training_data)
+        except Exception as e:
+            print(f"Error in classify_expense: {e}")
+            print(f"Input text: {user_input}")
+            print(traceback.format_exc())
+            raise
 
 app = Flask(__name__)
 CORS(app)
 
-# Initialize classifier
-classifier = ExpenseClassifier(training_data)
+# Initialize classifier globally
+try:
+    classifier = ExpenseClassifier(training_data)
+    print("Global classifier initialized")
+except Exception as e:
+    print(f"Error initializing global classifier: {e}")
+    sys.exit(1)
 
 @app.route('/classify_expense', methods=['POST'])
 def classify_expense():
-    data = request.get_json()
-    expense_text = data.get('expense_text', '')
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No JSON data received'}), 400
+        
+        expense_text = data.get('expense_text')
+        if not expense_text:
+            return jsonify({'error': 'No expense_text provided'}), 400
 
-    result = classifier.classify_expense(expense_text)
-    result['confidence_score'] = float(result['confidence_score'])
-    result['requires_new_expense_type'] = bool(result['requires_new_expense_type'])
-    
-    similar_entries = classifier.get_similar_entries(expense_text)
-    for entry in similar_entries:
-        entry['similarity'] = float(entry['similarity'])
+        print(f"Received request to classify: {expense_text}")
+        
+        result = classifier.classify_expense(expense_text)
+        similar_entries = []  # We'll skip similar entries for now to simplify debugging
+        
+        response = {
+            'classification': result,
+            'similar_entries': similar_entries
+        }
+        
+        print(f"Successful classification: {response}")
+        return jsonify(response)
 
-    return jsonify({
-        'classification': result,
-        'similar_entries': similar_entries
-    })
+    except Exception as e:
+        print(f"Error processing request: {e}")
+        print(traceback.format_exc())
+        return jsonify({
+            'error': 'Internal server error',
+            'message': str(e)
+        }), 500
 
 @app.route('/', methods=['GET'])
 def health_check():
     return jsonify({"status": "healthy"})
 
 if __name__ == '__main__':
-    # Download NLTK data
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    nltk.download('punkt_tab')
-    
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
-
-
-
