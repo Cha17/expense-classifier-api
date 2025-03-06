@@ -443,6 +443,49 @@ training_data = [
     ("laro", "Entertainment", "Gaming"),
     ("libangan", "Entertainment", "Hobbies"),
     ("hobby", "Entertainment", "Hobbies")
+
+
+    # Contingency Fund entries
+("emergency home repair", "Contingency Fund", "Emergency Repairs"),
+("unexpected plumbing issue", "Contingency Fund", "Emergency Repairs"),
+("roof leak repair", "Contingency Fund", "Emergency Repairs"),
+("electrical system emergency", "Contingency Fund", "Emergency Repairs"),
+("broken pipe fix", "Contingency Fund", "Emergency Repairs"),
+("urgent home maintenance", "Contingency Fund", "Emergency Repairs"),
+("emergency electrician", "Contingency Fund", "Emergency Repairs"),
+("urgent aircon repair", "Contingency Fund", "Emergency Repairs"),
+("immediate house repair", "Contingency Fund", "Emergency Repairs"),
+("tubero emergency", "Contingency Fund", "Emergency Repairs"),
+("biglang sira bubong", "Contingency Fund", "Emergency Repairs"),
+("emergency repair bahay", "Contingency Fund", "Emergency Repairs"),
+
+("emergency room visit", "Contingency Fund", "Medical Emergencies"),
+("urgent care clinic", "Contingency Fund", "Medical Emergencies"),
+("emergency medicine purchase", "Contingency Fund", "Medical Emergencies"),
+("ambulance service", "Contingency Fund", "Medical Emergencies"),
+("sudden illness treatment", "Contingency Fund", "Medical Emergencies"),
+("unexpected medical procedure", "Contingency Fund", "Medical Emergencies"),
+("emergency dental work", "Contingency Fund", "Medical Emergencies"),
+("accident medical expense", "Contingency Fund", "Medical Emergencies"),
+("emergency hospital admission", "Contingency Fund", "Medical Emergencies"),
+("biglang karamdaman", "Contingency Fund", "Medical Emergencies"),
+("emergency sa ospital", "Contingency Fund", "Medical Emergencies"),
+("aksidente medical expense", "Contingency Fund", "Medical Emergencies"),
+
+("unexpected car breakdown", "Contingency Fund", "Unexpected Expenses"),
+("stolen wallet replacement", "Contingency Fund", "Unexpected Expenses"),
+("sudden travel expense", "Contingency Fund", "Unexpected Expenses"),
+("emergency accommodation", "Contingency Fund", "Unexpected Expenses"),
+("unexpected tax payment", "Contingency Fund", "Unexpected Expenses"),
+("sudden family emergency", "Contingency Fund", "Unexpected Expenses"),
+("unplanned legal expense", "Contingency Fund", "Unexpected Expenses"),
+("emergency fund withdrawal", "Contingency Fund", "Unexpected Expenses"),
+("urgent document processing", "Contingency Fund", "Unexpected Expenses"),
+("unexpected penalty fee", "Contingency Fund", "Unexpected Expenses"),
+("biglang gastos", "Contingency Fund", "Unexpected Expenses"),
+("hindi inaasahang bayarin", "Contingency Fund", "Unexpected Expenses"),
+("emergency na gastusin", "Contingency Fund", "Unexpected Expenses"),
+("di-inaasahang gastos", "Contingency Fund", "Unexpected Expenses")
 ]
 class ExpenseClassifier:
     def __init__(self, training_data):
