@@ -802,7 +802,7 @@ training_data = [
     ("biglang gastos", "Contingency Fund", "Unexpected Expenses"),
     ("hindi inaasahang bayarin", "Contingency Fund", "Unexpected Expenses"),
     ("emergency na gastusin", "Contingency Fund", "Unexpected Expenses"),
-    ("di-inaasahang gastos", "Contingency Fund", "Unexpected Expenses")
+    ("di-inaasahang gastos", "Contingency Fund", "Unexpected Expenses"),
     ("computer repair emergency", "Contingency Fund", "Unexpected Expenses"),
     ("smartphone replacement", "Contingency Fund", "Unexpected Expenses"),
     ("laptop screen repair", "Contingency Fund", "Unexpected Expenses"),
@@ -811,7 +811,7 @@ training_data = [
     ("emergency visa processing", "Contingency Fund", "Unexpected Expenses"),
     ("biglang pagkakasakit", "Contingency Fund", "Medical Emergencies"),
     ("unexpected gadget repair", "Contingency Fund", "Unexpected Expenses"),
-    ("emergency passport renewal", "Contingency Fund", "Unexpected Expenses")
+    ("emergency passport renewal", "Contingency Fund", "Unexpected Expenses"),
 ]
 class ExpenseClassifier:
     def __init__(self, training_data):
