@@ -415,9 +415,9 @@ training_data = [
     ("lens", "Healthcare", "Vision Care/Eyewear"),
 
     ("Therapy session", "Healthcare", "Mental Health Services"),
-    ("Psychologist consultation", "Healthcare", "Mental Health Services")
+    ("Psychologist consultation", "Healthcare", "Mental Health Services"),
     ("counseling session", "Healthcare", "Mental Health Services"),
-    ("mental health consultation", "Healthcare", "Mental Health Services")
+    ("mental health consultation", "Healthcare", "Mental Health Services"),
     ("therapy", "Healthcare", "Mental Health Services"),
     ("psychologist", "Healthcare", "Mental Health Services"),
     ("counseling", "Healthcare", "Mental Health Services"),
