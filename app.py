@@ -530,10 +530,22 @@ training_data = [
     ("Car insurance monthly", "Insurance", "Car Insurance"),
     ("car insurance", "Insurance", "Car Insurance"),
     ("auto insurance", "Insurance", "Car Insurance"),
-    
+    ("vehicle insurance premium", "Insurance", "Car Insurance"),
+    ("comprehensive car insurance", "Insurance", "Car Insurance"),
+    ("third party car insurance", "Insurance", "Car Insurance"),
+    ("CTPL insurance renewal", "Insurance", "Car Insurance"),
+    ("auto policy premium", "Insurance", "Car Insurance"),
+    ("car insurance renewal", "Insurance", "Car Insurance"),
+    ("vehicle liability coverage", "Insurance", "Car Insurance"),
+    ("motor insurance", "Insurance", "Car Insurance"),
+    ("car policy payment", "Insurance", "Car Insurance"),
+    ("seguro ng kotse", "Insurance", "Car Insurance"),
+    ("car protection plan", "Insurance", "Car Insurance"),
+    ("annual vehicle insurance", "Insurance", "Car Insurance"),
+    ("motor vehicle policy", "Insurance", "Car Insurance"),
+    ("car damage protection", "Insurance", "Car Insurance"),
 
-
-     # Home Maintenance (expanded)
+    # Home Maintenance (expanded)
     ("Hardware store supplies", "Home Maintenance", "Home Improvements"),
     ("Paint and painting supplies", "Home Maintenance", "Home Improvements"),
     ("Home depot purchase", "Home Maintenance", "Home Improvements"),
@@ -841,6 +853,7 @@ training_data = [
     ("aral", "Education", "Tuition"),
     ("libro", "Education", "Books"),
     ("notebooks", "Education", "Supplies"),
+    ("notebook", "Education", "Supplies"),
     ("papel", "Education", "Supplies"),
     ("online class", "Education", "Courses"),
     ("seminar", "Education", "Courses"),
@@ -927,6 +940,17 @@ training_data = [
     ("pilates class", "Personal Care", "Gym/Fitness"),
     ("supplement", "Personal Care", "Gym/Fitness"),
     ("fitness equipment", "Personal Care", "Gym/Fitness"),
+    ("yoga", "Personal Care", "Gym/Fitness"),
+    ("yoga class", "Personal Care", "Gym/Fitness"),
+    ("yoga instructor", "Personal Care", "Gym/Fitness"),
+    ("Anytime Fitness", "Personal Care", "Gym/Fitness"),
+    ("Gold's Gym", "Personal Care", "Gym/Fitness"),
+    ("Pilates class", "Personal Care", "Gym/Fitness"),
+    ("Fitness class", "Personal Care", "Gym/Fitness"),
+    ("Sports massage", "Personal Care", "Haircuts/Salon Services"),
+    
+
+    
 
     # Family/Dependents entries
     ("Pet food Pedigree", "Family/Dependents", "Pet Care/Supplies"),
@@ -969,6 +993,24 @@ training_data = [
     ("Sun Life insurance", "Insurance", "Life Insurance"),
     ("AXA insurance premium", "Insurance", "Life Insurance"),
     ("Malayan insurance", "Insurance", "Home Insurance"),
+    ("property insurance premium", "Insurance", "Home Insurance"),
+    ("house insurance policy", "Insurance", "Home Insurance"),
+    ("home protection plan", "Insurance", "Home Insurance"),
+    ("fire insurance premium", "Insurance", "Home Insurance"),
+    ("homeowner's insurance", "Insurance", "Home Insurance"),
+    ("residential property coverage", "Insurance", "Home Insurance"),
+    ("house and lot insurance", "Insurance", "Home Insurance"),
+    ("dwelling protection policy", "Insurance", "Home Insurance"),
+    ("condo insurance premium", "Insurance", "Home Insurance"),
+    ("typhoon insurance coverage", "Insurance", "Home Insurance"),
+    ("flood insurance policy", "Insurance", "Home Insurance"),
+    ("earthquake insurance", "Insurance", "Home Insurance"),
+    ("seguro ng bahay", "Insurance", "Home Insurance"),
+    ("property damage coverage", "Insurance", "Home Insurance"),
+    ("home contents insurance", "Insurance", "Home Insurance"),
+    ("property protection plan", "Insurance", "Home Insurance"),
+    
+    # Travel Insurance entries
     ("Travel insurance for vacation", "Insurance", "Travel Insurance"),
     ("Pru Life payment", "Insurance", "Life Insurance"),
     ("Pru Life premium", "Insurance", "Life Insurance"),
@@ -988,6 +1030,21 @@ training_data = [
     ("insurance policy", "Insurance", "Life Insurance"),
     ("insurance premium", "Insurance", "Life Insurance"),
     ("insurance contribution", "Insurance", "Life Insurance"),
+     ("international travel insurance", "Insurance", "Travel Insurance"),
+    ("overseas trip coverage", "Insurance", "Travel Insurance"),
+    ("travel protection plan", "Insurance", "Travel Insurance"),
+    ("flight insurance premium", "Insurance", "Travel Insurance"),
+    ("vacation insurance policy", "Insurance", "Travel Insurance"),
+    ("travel medical insurance", "Insurance", "Travel Insurance"),
+    ("journey coverage plan", "Insurance", "Travel Insurance"),
+    ("seguro sa biyahe", "Insurance", "Travel Insurance"),
+    ("travel cancellation insurance", "Insurance", "Travel Insurance"),
+    ("baggage loss protection", "Insurance", "Travel Insurance"),
+    ("trip delay coverage", "Insurance", "Travel Insurance"),
+    ("travel insurance for family", "Insurance", "Travel Insurance"),
+    ("outbound travel protection", "Insurance", "Travel Insurance"),
+    ("insurance sa pagbibiyahe", "Insurance", "Travel Insurance"),
+    ("overseas insurance coverage", "Insurance", "Travel Insurance"),
     
 
 
@@ -1197,7 +1254,7 @@ training_data = [
     ("pagkawala ng cellphone", "Contingency Fund", "Unexpected Expenses"),
     ("biglang pagkasira ng laptop", "Contingency Fund", "Unexpected Expenses"),
     ("hindi inaasahang bayarin sa gobyerno", "Contingency Fund", "Unexpected Expenses"),
-    ("biglaang pagkansela ng biyahe", "Contingency Fund", "Unexpected Expenses"),
+    ("biglaang pagkakansela ng biyahe", "Contingency Fund", "Unexpected Expenses"),
     ("emergency pagpapaayos ng gadget", "Contingency Fund", "Unexpected Expenses"),
     ("pagkawala ng pitaka", "Contingency Fund", "Unexpected Expenses"),
     ("biglaang pagkasira ng sasakyan", "Contingency Fund", "Unexpected Expenses"),
