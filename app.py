@@ -1046,6 +1046,9 @@ training_data = [
     ("lip balm", "Personal Care", "Skincare Products"),
     ("lip tint", "Personal Care", "Personal Hygiene Products"),
     ("makeup remover", "Personal Care", "Skincare Products"),
+    ("pimple patch", "Personal Care", "Skincare Products"),
+    ("sunblock", "Personal Care", "Skincare Products"),
+    ("Sunscreen", "Personal Care", "Skincare Products"),
 
 
     
